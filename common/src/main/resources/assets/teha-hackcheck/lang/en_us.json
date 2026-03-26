@@ -1,0 +1,12 @@
+{
+  "teha-hackcheck.initializing": "[teha-hackcheck] Initializing...",
+  "teha-hackcheck.detected_count": "[teha-hackcheck] Detected %s suspicious mods.",
+  "teha-hackcheck.clean": "Clean",
+  "teha-hackcheck.blacklisted": "Blacklisted: %s",
+  "teha-hackcheck.detected_hacks": "Detected hacks: %s",
+  "teha-hackcheck.screen.title": "teha hack check",
+  "teha-hackcheck.screen.continue": "Understand the risks and continue",
+  "teha-hackcheck.screen.quit": "Quit Game",
+  "teha-hackcheck.screen.warning": "Warning: Cheat client detected",
+  "teha-hackcheck.screen.scroll": "Scrollable with mouse wheel"
+}

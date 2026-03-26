@@ -19,12 +19,14 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 public class TehaHackCheck implements ClientModInitializer {
-    public record DetectedMod(String name, String details) {}
+    public record DetectedMod(String name, Text details) {}
     public static final List<DetectedMod> DETECTED_CHEATS = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
+        System.out.println("[teha-hackcheck] Initializing...");
         checkCheats();
+        System.out.println("[teha-hackcheck] Detected " + DETECTED_CHEATS.size() + " suspicious mods.");
     }
 
     private void checkCheats() {
@@ -158,10 +160,10 @@ public class TehaHackCheck implements ClientModInitializer {
             static Res detected(String id, int s, Map<String,Integer> h) {
                 return new Res(true, false, id, s, Collections.unmodifiableMap(h));
             }
-            public String summary() {
-                if (!detected) return "クリーン";
-                if (blacklisted) return "ブラックリスト: " + modId;
-                return "ハックを検出: %s".formatted(String.join(", ", hits.keySet()));
+            public Text summary() {
+                if (!detected) return Text.translatable("teha-hackcheck.clean");
+                if (blacklisted) return Text.translatable("teha-hackcheck.blacklisted", modId);
+                return Text.translatable("teha-hackcheck.detected_hacks", String.join(", ", hits.keySet()));
             }
         }
     }
@@ -172,16 +174,16 @@ public class TehaHackCheck implements ClientModInitializer {
         private int totalListHeight = 0;
         
         public WarningScreen(Screen p) {
-            super(Text.literal("teha hack check").formatted(Formatting.RED, Formatting.BOLD));
+            super(Text.translatable("teha-hackcheck.screen.title").formatted(Formatting.RED, Formatting.BOLD));
             this.parent = p;
         }
 
         @Override
         protected void init() {
-            this.addDrawableChild(ButtonWidget.builder(Text.literal("リスクを理解して続行"), 
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("teha-hackcheck.screen.continue"), 
                 b -> this.client.setScreen(this.parent)).dimensions(this.width / 2 - 100, this.height - 40, 200, 20).build());
             
-            this.addDrawableChild(ButtonWidget.builder(Text.literal("ゲームを終了"), 
+            this.addDrawableChild(ButtonWidget.builder(Text.translatable("teha-hackcheck.screen.quit"), 
                 b -> this.client.stop()).dimensions(this.width / 2 - 100, this.height - 65, 200, 20).build());
         }
 
@@ -193,14 +195,14 @@ public class TehaHackCheck implements ClientModInitializer {
             
             int cx = this.width / 2, yStart = 50;
             c.drawCenteredTextWithShadow(this.textRenderer, this.title, cx, yStart, 0xFFFFFFFF);
-            c.drawCenteredTextWithShadow(this.textRenderer, Text.literal("警告: チートクライアントが検知されました").formatted(Formatting.YELLOW, Formatting.BOLD), cx, yStart + 20, 0xFFFFFFFF);
+            c.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("teha-hackcheck.screen.warning").formatted(Formatting.YELLOW, Formatting.BOLD), cx, yStart + 20, 0xFFFFFFFF);
             
             int listTop = yStart + 35;
             int listBottom = this.height - 80;
             int availableHeight = listBottom - listTop;
 
             if (totalListHeight > availableHeight) {
-                c.drawCenteredTextWithShadow(this.textRenderer, Text.literal("マウスホイールでスクロール可能").formatted(Formatting.DARK_GRAY, Formatting.ITALIC), cx, listTop, 0xFFFFFFFF);
+                c.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("teha-hackcheck.screen.scroll").formatted(Formatting.DARK_GRAY, Formatting.ITALIC), cx, listTop, 0xFFFFFFFF);
                 listTop += 15;
             }
 
@@ -210,7 +212,7 @@ public class TehaHackCheck implements ClientModInitializer {
             for (DetectedMod m : DETECTED_CHEATS) {
                 c.drawCenteredTextWithShadow(this.textRenderer, Text.literal(m.name()).formatted(Formatting.RED, Formatting.BOLD), cx, y, 0xFFFFFFFF);
                 y += 12;
-                c.drawCenteredTextWithShadow(this.textRenderer, Text.literal(m.details()).formatted(Formatting.GRAY), cx, y, 0xFFFFFFFF);
+                c.drawCenteredTextWithShadow(this.textRenderer, m.details().copy().formatted(Formatting.GRAY), cx, y, 0xFFFFFFFF);
                 y += 20;
             }
             

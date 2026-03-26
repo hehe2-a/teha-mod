@@ -3,7 +3,7 @@
   "id": "teha-hackcheck",
   "version": "${version}",
   "name": "teha - ハックチェック",
-  "description": "modフォルダー内のmodをチェックして、チートクライアントなどを検知します。",
+  "description": "Checks mods in your folder to detect cheat clients and suspicious files.",
   "authors": [
     "はて,"
   ],

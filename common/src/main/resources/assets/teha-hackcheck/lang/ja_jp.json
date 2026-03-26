@@ -1,0 +1,12 @@
+{
+  "teha-hackcheck.initializing": "[teha-hackcheck] 初期化中...",
+  "teha-hackcheck.detected_count": "[teha-hackcheck] %s 個の不審なModを検出しました。",
+  "teha-hackcheck.clean": "クリーン",
+  "teha-hackcheck.blacklisted": "ブラックリスト: %s",
+  "teha-hackcheck.detected_hacks": "ハックを検出: %s",
+  "teha-hackcheck.screen.title": "teha hack check",
+  "teha-hackcheck.screen.continue": "リスクを理解して続行",
+  "teha-hackcheck.screen.quit": "ゲームを終了",
+  "teha-hackcheck.screen.warning": "警告: チートクライアントが検知されました",
+  "teha-hackcheck.screen.scroll": "マウスホイールでスクロール可能"
+}
