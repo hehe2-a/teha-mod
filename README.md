@@ -6,7 +6,7 @@
 チート使ってそうな人にmod入れてもらったらチート使ってるかわかるかもしれない？
 たぶん.....
 
-ダウンロードは[こちら](https://github.com/hehe2-a/teha-mod/releases/download/1.1.5/teha-hackcheck-1.1.5+mc1.21.8.jar)
+ダウンロードは[こちら](https://github.com/hehe2-a/teha-mod/releases/tag/1.2.1)
 
 ## 🛠 主な機能
 
