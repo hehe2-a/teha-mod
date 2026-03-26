@@ -29,20 +29,19 @@
 ## 🚀 クライアント起動（開発用）
 
 ```bash
-# 例: MC 1.21.8 で起動
-./gradlew :v1_21_8:runClient
+./gradlew :v1_21:runClient
 ./gradlew :v1_21_1:runClient
 ./gradlew :v1_21_4:runClient
+./gradlew :v1_21_8:runClient
 ./gradlew :v1_21_11:runClient
 ```
 
 
 ## 📁 構成
 
-- `common/src/` — 共通ソースコード（ここを編集すれば全バージョンに反映）
+- `common/src/`: 共通ソースコード（ここを編集すれば全バージョンに反映）
 - `ワールド・設定`: 全バージョンで共通（`run/` フォルダを使用します）
-
-- `v1_21_*/` — 各バージョン用の設定
+- `v1_21_*/`: 各バージョン用の設定
 - `Modの追加方法`: 各バージョン `v1_21_*/mods/` フォルダに入れてください
 
 ---
